@@ -104,10 +104,7 @@ with open(file_name,'w', encoding='utf-8') as xero_invoices:
         t0 = time.clock()
 
         #retrieve line items
-        y = get_line_items(*invoice,xero_invoices,line_items_counter)
-
-        #line_items_counter.append(line_items)
-        #line_items_counter.append(y)
+        get_line_items(*invoice,xero_invoices,line_items_counter)
 
         #calculate run time and append to total time
         seconds += time.clock() - t0
