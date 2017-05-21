@@ -4,13 +4,13 @@
 +-----------------------------------------------------------------------+
 |  This is an ETL process which extracts invoice line data from the Xero|      
 |  finance application and stages it into S3 before loading into the    |
-|  Redshift data Warehouse. 											|
-|   																	|
-|  The overall pipeline can be summarised as: 							|
-|   																	|
+|  Redshift data Warehouse. 						|
+|   									|
+|  The overall pipeline can be summarised as: 				|
+|   									|
 |  Xero API (Extract, Transform) ===> S3 (Stage) ===> Redshift (Load)	|
-|																		|
-|  The below script takes care of the first part.						|
+|									|									|
+|  The below script takes care of the first part.			|
 +-----------------------------------------------------------------------+
 
 """
