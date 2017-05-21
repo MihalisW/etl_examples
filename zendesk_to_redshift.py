@@ -5,15 +5,15 @@
 +-----------------------------------------------------------------------------+
 |  This ETL process queries the Zendesk API which responds with a JSON file   |
 |  containing key values which describe various properties of created tickets,|
-|  such as datetime, advisor, order number, sku, etc.       				  |
-| 																		      |
+|  such as datetime, advisor, order number, sku, etc.       		      |
+| 									      |
 |  This file is then transformed in preparation for loading into Redshift.    |
-| 																		      |
+| 									      |
 |  The reason that there are two pararel processes running is because there   | 
 |  are two ways for creating forms on zendesk: either through a preset form,  | 
 |  or through a custom one. This distinction is important to the business for |
 |  various reasons so all tickets are from the onset bucketed as either form, |
-|  or non-form.															      |
+|  or non-form.								      |
 +-----------------------------------------------------------------------------+
 
 """
