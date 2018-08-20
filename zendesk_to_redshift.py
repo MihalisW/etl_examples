@@ -7,7 +7,7 @@
 |                                                                              |
 |  This file is then transformed in preparation for loading into Redshift.     |
 |                                                                              |
-|  The reason that there are two processes running is because there    |
+|  The reason that there are two processes running is because there            |
 |  are two ways for creating forms on zendesk: either through a preset form,   |
 |  or through a custom one. This distinction is important to the business for  |
 |  various reasons so all tickets are from the onset bucketed as either form,  |
