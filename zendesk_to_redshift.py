@@ -18,6 +18,7 @@ import datetime
 import json
 import re
 import time
+import os
 
 import boto3
 import psycopg2
@@ -155,18 +156,18 @@ def stage_and_load_tickets(conn, s3, filename):
 def etl():
     s3 = boto3.client(
         's3',
-        aws_access_key_id='aws_access_key_id',
-        aws_secret_access_key='aws_access_key_id',
-        region_name='region-sub_region-number',
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name=os.getenv("AWS_DEFAULT_REGION"),
     )
     zenpy = Zenpy(
-        email='<email>',
-        token='<secret>',
-        subdomain='<domain>',
+        email=os.getenv("ZENDESK_EMAIL"),
+        token=os.getenv("ZENDESK_TOKEN"),
+        subdomain=os.getenv("OUR_SUBDOMAIN"),
     )
-
+    dsn_string = os.getenv("REDSHIFT_CONN_STRING")
+    
     # Process nonform tickets
-    nonform_dsn = "host='hostname' dbname='public' user='user' password='XXX' port='5439'"
     conn = psycopg2.connect(nonform_dsn)
     conn.set_session(autocommit=True)
     nonform_query = "SELECT MAX(created_at) FROM zendesk.tickets WHERE LENGTH(ticket_form)=0"
