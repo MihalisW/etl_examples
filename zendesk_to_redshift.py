@@ -168,7 +168,7 @@ def etl():
     dsn_string = os.getenv("REDSHIFT_CONN_STRING")
     
     # Process nonform tickets
-    conn = psycopg2.connect(nonform_dsn)
+    conn = psycopg2.connect(dsn_string)
     conn.set_session(autocommit=True)
     nonform_query = "SELECT MAX(created_at) FROM zendesk.tickets WHERE LENGTH(ticket_form)=0"
     start_date, end_date = find_dates(conn, query=nonform_query)
@@ -182,7 +182,7 @@ def etl():
 
     # Process form tickets
     form_dsn = "host='hostname' dbname='public' user='user' password='XXX' port='5439'"
-    conn = psycopg2.connect(form_dsn)
+    conn = psycopg2.connect(dsn_string)
     conn.set_session(autocommit=True)
     form_query = "SELECT MAX(created_at) FROM zendesk.tickets WHERE LENGTH(ticket_form)>0"
     start_date, end_date = find_dates(conn, query=form_query)
